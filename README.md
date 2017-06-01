@@ -27,32 +27,49 @@ To start your own project, just run ``npm init`` in the commandline and walk thr
  
 [Example](./npmInit.png)
 
+After that you take a look at your `package.json` file to see what it is all about.
+
 ## Works on my machine (Branch 2)
-Now lets install our first dependency and see what happens.  As we said in the previous step 
+Now lets install our first dependency and see what happens.  As we said in the previous step the ``package.json`` file is
+used to track dependencies.  So lets go ahead and install Expressm a dependency that we will need to create our first API.
+To install a dependency, you simply run ``npm install <dependency>``, so in our case we want to run ``npm install express``
 
-## How to install a dependency the the right way (Branch 3)
+So by installing a dependency, it should now be in your ``package.json`` file, right?  Nope, this is a 'gotcha' moment
+with npm. You are now in the classic "works on my machine" situation. Go ahead and look at the `package.json` file again, 
+it should look exactly the same as before.  That's no good.
+ 
+To make sure that it works on everyone's machine, you need 
+to explicitly tell npm that you want to save the dependency into your ``package.json`` file.  To do this, you can run:
+``npm install express --save``
 
-
-## My first index.js (Branch 4)
-
-
-## require("dependency"); (Branch 5)
-
-
-## Express (Branch 6)
-
-
-## HTTP Methods  (Branch 7)
-
-
-## GET (Branch 8)
-
-
-## GET with route parameter (Branch 9)
+Now go ahead and open the `package.json` file again.  You should now notice that you have a dependencies section that 
+looks something like:
+    
+    "dependencies": {
+        "express": "^4.15.3"
+    }
 
 
-## POST/PUT (Branch 10)
+## My first index.js (Branch 3)
 
 
-## Wrapping up
+## require("dependency"); (Branch 4)
+
+
+## Express (Branch 7)
+
+
+## HTTP Methods  (Branch 8)
+
+
+## GET (Branch 9)
+
+
+## GET with route parameter (Branch 10)
+
+
+## POST/PUT (Branch 9)
+
+
+##Wrapping up
 
