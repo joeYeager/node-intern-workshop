@@ -12,16 +12,47 @@ This project has numbered branches that you can checkout if you get lost along t
  step that it is next to in this README, so if have problems with step 15, you could do:  ``git checkout 15`` 
  
 ##Install Node.js and NPM
+
 To initialize the project you first need to have Node.js and NPM installed on your system, you can get node here: 
 https://nodejs.org/en/download/
 
 ## Initialize the project (Branch 1)
+
 Once that is done you first need to initialize the project.  When you initialize the project, it will create a file named: 
 ``package.json``.  This file allows you to define your project and provide it with a name, description, a version number, etc.
-It also allows you to add and track dependencies for your project.
+It also allows you to add and track dependencies for your project so that if someone else wants to pull and build your project
+it is easy for them to install of the dependencies that your project requires by simply running: ``npm install`` 
 
-## Installing your first dependency (Branch 2)
+To start your own project, just run ``npm init`` in the commandline and walk through the steps that appear on screen:
+ 
+[Example](./npmInit.png)
+
+## Works on my machine (Branch 2)
+Now lets install our first dependency and see what happens.  As we said in the previous step 
+
+## How to install a dependency the the right way (Branch 3)
 
 
-## Installing your first dependency pt. 2(Branch 3)
+## My first index.js (Branch 4)
+
+
+## require("dependency"); (Branch 5)
+
+
+## Express (Branch 6)
+
+
+## HTTP Methods  (Branch 7)
+
+
+## GET (Branch 8)
+
+
+## GET with route parameter (Branch 9)
+
+
+## POST/PUT (Branch 10)
+
+
+## Wrapping up
 
