@@ -368,7 +368,7 @@ When you don't provide a status code, express sends a status of 200 by default w
 Suppose we want to provide a different status code, we can do something like: 
 
     app.post('/addTwoNumbers', function(request, response) {
-        var c = request.body.a + request.body.b
+        var c = request.body.a + request.body.b;
         response.send(500, "a + b = " + c);  
     });
 
