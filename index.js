@@ -5,6 +5,10 @@ app.get('/', function(request, response) {
     response.send('Hello, world!');
 });
 
+app.get('/happy-birthday/:name', function(request, response) {
+    response.send('Happy Birthday ' + request.params.name + '!');
+});
+
 app.listen(8000, function() {
     console.log("Listening on port 8000!");
 });
