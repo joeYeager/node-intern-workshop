@@ -328,7 +328,7 @@ We can run: `npm install body-parser --save`
 Then we can add a couple statement below our instantiation of the `app` variable.
  
     var bodyParser = require('body-parser');
-    app.use('bodyParser.json());
+    app.use(bodyParser.json());
     
 What these lines do is `require` the body-parser package and set up what is called middleware.  This particular piece of 
 middleware will run before every request is passed to it's corresponding handler function.  The body-parser will translate the
@@ -336,7 +336,7 @@ request body into a format that express can understand.  Once we have those line
 should look very familiar:
     
     app.post('/addTwoNumbers', function(request, response) {
-        var c = request.body.a + request.body.b
+        var c = request.body.a + request.body.b;
         response.send("a + b = " + c);  
     });
 
