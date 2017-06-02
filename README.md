@@ -31,6 +31,7 @@ To start your own project, just run ``npm init`` in the commandline and walk thr
 After that you take a look at your `package.json` file to see what it is all about.
 
 ## Works on my machine (Step 2)
+
 Now lets install our first dependency and see what happens.  As we said in the previous step the ``package.json`` file is
 used to track dependencies.  So lets go ahead and install Expressm a dependency that we will need to create our first API.
 To install a dependency, you simply run ``npm install <dependency>``, so in our case we want to run ``npm install express``
@@ -53,6 +54,7 @@ looks something like:
 
 
 ## My first index.js (Step 3)
+
 In whatever method you feel comfortable, create a file in the same folder as the `package.json` file called index.js.  
 You can technically call it whatever you want, but in this workshop, we will be using index.js in the commands.
 
@@ -62,6 +64,7 @@ Now that you have a file created, you can now add code to it.  Lets add JavaScip
 After you have added that you can run the script using `node index.js`, and you should see some output in your terminal.
 
 ## require("dependency"); (Step 4)
+
 Now that we have express properly installed and we have an index file, we can now start to use the express dependency.  
 To use a dependency in Node, we need to require it.  To do this, you do what the title suggests and make a call to `require("dependencyName");`
 
@@ -278,6 +281,7 @@ post request.  They send information through the use of a 'body'.  The body coul
 You can create an 'endpoint' for either of these methods in Express.
 
 ## GET (Step 6)
+
 To add a GET method on the app, we need to modify our `index.js` file, and tell our application that we want to create 
 an endpoint of type get.  We need to do this before we tell the application to start listening.  So above the listen 
 statement we can add the following:
@@ -295,6 +299,7 @@ use to respond to the request.  When we call `response.send('Hello, world!');` w
 response.  Now we can try it out, by running the script again and navigating to `localhost:8000` in our browser.
 
 ## GET with route parameter (Step 7)
+
 As we talked about earlier, if there is ever any information that we need to send as part of a get request, we send it as 
 a part of the URL.  In this section, we will use that to wish one of the helpers today a happy birthday.  So we will do something
 very similar to the previous section:
@@ -314,6 +319,7 @@ after `/happy-birthday/` as the variable name.  We can then access that name by 
 object.  Now we can navigate to `localhost:8000/happy-birthday/Justin` and wish Justin or anyone a happy birthday as well.
 
 ## POST (Step 8)
+
 Now that we have played around with GET requests, it is time to give POST a shot.  To support parsing the bodies of the 
 incoming POST requests, we need to add another dependency called body-parser.  
 
@@ -347,7 +353,8 @@ to 'application/json' and provide the following body:
 
 We should get a response with our numbers being added together.
 
-# Status Codes (Step 9)
+## Status Codes (Step 9)
+
 Every time an endpoint is accessed, it sends a status code.  Probably a couple of the better known examples of these are 
 404 not found  or 500 internal server error. 
 
