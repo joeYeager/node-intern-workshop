@@ -277,10 +277,40 @@ post request.
 You can create an 'endpoint' for either of these methods in Express.
 
 ## GET (Step 6)
-To add
+To add a GET method on the app, we need to modify our `index.js` file, and tell our application that we want to create 
+an endpoint of type get.  We need to do this before we tell the application to start listening.  So above the listen 
+statement we can add the following:
+    
+    app.get('/', function(request, response) {
+        response.send('Hello, world!');  
+    });
+    
+This looks pretty similar to the listen statement, so we should feel comfortable with this.  What we are going is telling 
+the application that we want to create a GET endpoint on '/' or the root level.  The second argument, the callback function, 
+can be considered a handler for every HTTP request we send to that endpoint. So every time a GET request is sent to 
+`localhost:8000`, that function will be invoked.  You will notice that this time the callback has arguments, that is because
+every time we hit that endpoint, express is passing the incoming request object in, as well as the response object that we will 
+use to respond to the request.  When we call `response.send('Hello, world!');` we are sending the text 'Hello, world!' as a 
+response.  Now we can try it out, by running the script again and navigating to `localhost:8000` in our browser.
 
 ## GET with route parameter (Step 7)
+As we talked about earlier, if there is ever any information that we need to send as part of a get request, we send it as 
+a part of the URL.  In this section, we will use that to wish one of the helpers today a happy birthday.  So we will do something
+very similar to the previous section:
+        
+    app.get('/happy-birthday', function(request, response) {
+        response.send('Happy Birthday Ricky!');  
+    });
 
+This is nothing new, and it only works to wish Ricky a happy birthday, so lets jazz it up.   
+
+    app.get('/happy-birthday/:name', function(request, response) {
+        response.send('Happy Birthday ' + request.params.name + '!');  
+    });
+    
+We can make a minor modification to the endpoint name and add a `:name` to the end.  This tells Express to treat everything in the URL 
+after `/happy-birthday/` as the variable name.  We can then access that name by using the `name` property on the `request.params`
+object.  Now we can navigate to `localhost:8000/happy-birthday/Justin` and wish Justin a happy birthday as well.
 
 ## POST (Step 8)
 
