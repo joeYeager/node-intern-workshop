@@ -10,7 +10,7 @@ understanding of APIs and how they work on a more general level.
  
  
 This project has numbered branches that you can checkout if you get lost along the way, the number will correspond to the
- step that it is next to in this README, so if have problems with step 15, you could do:  ``git checkout 15`` 
+ step that it is next to in this README, so if have problems with step 1, you could do:  ``git checkout 1`` 
  
 ## Install Node.js and NPM
 
@@ -368,7 +368,7 @@ When you don't provide a status code, express sends a status of 200 by default w
 Suppose we want to provide a different status code, we can do something like: 
 
     app.post('/addTwoNumbers', function(request, response) {
-        var c = request.body.a + request.body.b
+        var c = request.body.a + request.body.b;
         response.send(500, "a + b = " + c);  
     });
 
