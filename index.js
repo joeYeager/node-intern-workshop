@@ -13,7 +13,7 @@ app.get('/happy-birthday/:name', function(request, response) {
 });
 
 app.post('/addTwoNumbers', function(request, response) {
-    var c = request.body.a + request.body.b
+    var c = request.body.a + request.body.b;
     response.send(500, "a + b = " + c);
 });
 
