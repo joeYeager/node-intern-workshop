@@ -1,6 +1,7 @@
 #Node.js Workshop
 
-##Purpose
+## Purpose
+
 The purpose of this workshop is to teach those who are new to Node.js how to get up and running with their
 very own Node.js application.  You will learn now to initialize a Node project, how to utilize npm(Node package manager) 
 to add dependencies to your project, and how to build your very first API.  By the end of this workshop you will have an 
@@ -11,7 +12,7 @@ understanding of APIs and how they work on a more general level.
 This project has numbered branches that you can checkout if you get lost along the way, the number will correspond to the
  step that it is next to in this README, so if have problems with step 15, you could do:  ``git checkout 15`` 
  
-##Install Node.js and NPM
+## Install Node.js and NPM
 
 To initialize the project you first need to have Node.js and NPM installed on your system, you can get node here: 
 https://nodejs.org/en/download/
@@ -368,4 +369,3 @@ Now if we restart the script and hit the endpoint again using Postman, you shoul
 
 
 ## The End
-
