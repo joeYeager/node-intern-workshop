@@ -10,7 +10,7 @@ understanding of APIs and how they work on a more general level.
  
  
 This project has numbered branches that you can checkout if you get lost along the way, the number will correspond to the
- step that it is next to in this README, so if have problems with step 15, you could do:  ``git checkout 15`` 
+ step that it is next to in this README, so if have problems with step 1, you could do:  ``git checkout 1`` 
  
 ## Install Node.js and NPM
 
