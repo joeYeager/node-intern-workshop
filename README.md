@@ -272,7 +272,7 @@ making at least one GET request to a web server asking for the resources you nee
 you need to transfer as part of a GET request is either done as part of the URL or as a request header(we will not get into these today).
 
 POST - A post request is also very commonly used.  Every time you login to a page or submit a form, that is probably a 
-post request.
+post request.  They send information through the use of a 'body'.  The body could be xml, json, text, etc.
 
 You can create an 'endpoint' for either of these methods in Express.
 
@@ -310,12 +310,62 @@ This is nothing new, and it only works to wish Ricky a happy birthday, so lets j
     
 We can make a minor modification to the endpoint name and add a `:name` to the end.  This tells Express to treat everything in the URL 
 after `/happy-birthday/` as the variable name.  We can then access that name by using the `name` property on the `request.params`
-object.  Now we can navigate to `localhost:8000/happy-birthday/Justin` and wish Justin a happy birthday as well.
+object.  Now we can navigate to `localhost:8000/happy-birthday/Justin` and wish Justin or anyone a happy birthday as well.
 
 ## POST (Step 8)
+Now that we have played around with GET requests, it is time to give POST a shot.  To support parsing the bodies of the 
+incoming POST requests, we need to add another dependency called body-parser.  
 
-## POST with Body (Step 9)
+We can run: `npm install body-parser --save`
+
+Then we can add a couple statement below our instantiation of the `app` variable.
+ 
+    var bodyParser = require('body-parser');
+    app.use('bodyParser.json());
+    
+What these lines do is `require` the body-parser package and set up what is called middleware.  This particular piece of 
+middleware will run before every request is passed to it's corresponding handler function.  The body-parser will translate the
+request body into a format that express can understand.  Once we have those lines added, we can add a POST endpoint that
+should look very familiar:
+    
+    app.post('/addTwoNumbers', function(request, response) {
+        var c = request.body.a + request.body.b
+        response.send("a + b = " + c);  
+    });
+
+This endpoint is expected a body with exactly at least one parameter called `name`.
+
+So now we can fire up Postman, and set it to use a POST request, and point it towards `localhost:8000/happy-birthday`.
+When we set up the middleware, we told it that we wanted our body parser to parse the body as JSON, so we can set the body type
+to 'application/json' and provide the following body:
+      
+    {
+    	"a": 1,
+    	"b": 1
+    }
+
+We should get a response with our numbers being added together.
+
+# Status Codes (Step 9)
+Every time an endpoint is accessed, it sends a status code.  Probably a couple of the better known examples of these are 
+404 not found  or 500 internal server error. 
+
+The status codes conform to the convention:
+2XX - Success
+3XX - Redirection
+4XX - Client error
+5xx - Server error
+    
+When you don't provide a status code, express sends a status of 200 by default which means that the request was successful.
+Suppose we want to provide a different status code, we can do something like: 
+
+    app.post('/addTwoNumbers', function(request, response) {
+        var c = request.body.a + request.body.b
+        response.send(500, "a + b = " + c);  
+    });
+
+Now if we restart the script and hit the endpoint again using Postman, you should see a status code of 500 Internal Server Error
 
 
-##Wrapping up
+## The End
 
