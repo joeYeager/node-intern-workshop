@@ -11,5 +11,8 @@
     "url": "ssh://git@stash.cdk.com/~yeagerjo/nodejsworkshop.git"
   },
   "author": "Joseph Yeager",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
