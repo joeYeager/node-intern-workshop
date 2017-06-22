@@ -8,10 +8,13 @@ to add dependencies to your project, and how to build your very first API.  By t
 API that you can access from a web browser to provide a friendly greeting.  You will also hopefully have a better 
 understanding of APIs and how they work on a more general level.
  
+## Notes
+- This project has numbered branches that you can checkout if you get lost along the way, the number will correspond to the
+ step that it is next to the title in this README, so if have problems with step 1, you could do:  ``git checkout 1`` 
  
-This project has numbered branches that you can checkout if you get lost along the way, the number will correspond to the
- step that it is next to in this README, so if have problems with step 1, you could do:  ``git checkout 1`` 
+- In between steps, when you need to kill the process, you can do so using `Ctrl + C` 
  
+- For Windows users, install Node/NPM may not put the commands in your path, so you may need to run them like so: `c:\Program Files\nodejs\npm.cmd <command to run>`
 ## Install Node.js and NPM
 
 To initialize the project you first need to have Node.js and NPM installed on your system, you can get node here: 
@@ -33,7 +36,7 @@ After that you take a look at your `package.json` file to see what it is all abo
 ## Works on my machine (Step 2)
 
 Now lets install our first dependency and see what happens.  As we said in the previous step the ``package.json`` file is
-used to track dependencies.  So lets go ahead and install Expressm a dependency that we will need to create our first API.
+used to track dependencies.  So lets go ahead and install Express a dependency that we will need to create our first API.
 To install a dependency, you simply run ``npm install <dependency>``, so in our case we want to run ``npm install express``
 
 So by installing a dependency, it should now be in your ``package.json`` file, right?  Nope, this is a 'gotcha' moment
@@ -58,7 +61,7 @@ looks something like:
 In whatever method you feel comfortable, create a file in the same folder as the `package.json` file called index.js.  
 You can technically call it whatever you want, but in this workshop, we will be using index.js in the commands.
 
-Now that you have a file created, you can now add code to it.  Lets add JavaScipt's equivalent of a print statement, a 
+Now that you have a file created, you can now add code to it.  Lets add JavaScript's equivalent of a print statement, a 
 `console.log()` statement.  You can make it say whatever you want, just add `console.log("whatever you want to say");`
 
 After you have added that you can run the script using `node index.js`, and you should see some output in your terminal.
@@ -75,11 +78,11 @@ You can do something like: `var express = require('express');`
 
 This will allow you to later access the dependency using the keyword `express`.
 
-Lets test it by adding a `console.log()` state like we learned about above to log out the contents of express.
+Lets test it by adding a `console.log()` statement like we learned about above to log out the contents of express.
  
-Something like: `console.log(express);`
+Something like: `console.log(express);` at the end of the file.
 
-Now lets run the index script using node, and we should see something along the lines of:
+Now lets run the index script using: `node index.js`, and we should see something along the lines of:
 
     
     { [Function: createApplication]
@@ -256,7 +259,7 @@ to tell it to listen for Http requests on a particular port.  In this example, w
     });
 
 What this is doing is calling the listen function that is a part of the app object, and then passing it the port number 
-8000 to listen on.  The second argument being passed in to the listen function is what is called a 'callback' function. 
+8000 to listen on.  The second argument being passed in to the listen function, is what is called a 'callback' function. 
 This is a  function that he listen function will invoke when it is done executing. 
 
 If we run the script again, like previously (`node index.js`), we should see that this time, the script does not exit and 
@@ -316,7 +319,10 @@ This is nothing new, and it only works to wish Ricky a happy birthday, so lets j
     
 We can make a minor modification to the endpoint name and add a `:name` to the end.  This tells Express to treat everything in the URL 
 after `/happy-birthday/` as the variable name.  We can then access that name by using the `name` property on the `request.params`
-object.  Now we can navigate to `localhost:8000/happy-birthday/Justin` and wish Justin or anyone a happy birthday as well.
+object.  
+
+Now we can navigate to `localhost:8000/happy-birthday/Justin` and wish Justin happy birthday.
+Also, lets not forget to navigate to `localhost:8000/happy-birthday/Evan` and wish Evan happy birthday as well.
 
 ## POST (Step 8)
 
@@ -342,7 +348,7 @@ should look very familiar:
 
 This endpoint is expected a body with exactly at least one parameter called `name`.
 
-So now we can fire up Postman, and set it to use a POST request, and point it towards `localhost:8000/happy-birthday`.
+So now we can fire up Postman, and set it to use a POST request, and point it towards `localhost:8000/addTwoNumbers`.
 When we set up the middleware, we told it that we wanted our body parser to parse the body as JSON, so we can set the body type
 to 'application/json' and provide the following body:
       
@@ -353,16 +359,20 @@ to 'application/json' and provide the following body:
 
 We should get a response with our numbers being added together.
 
+[Example Postman Request](./postman.png)
+
+
 ## Status Codes (Step 9)
 
 Every time an endpoint is accessed, it sends a status code.  Probably a couple of the better known examples of these are 
 404 not found  or 500 internal server error. 
 
 The status codes conform to the convention:
+1XX - Informational responses 
 2XX - Success
 3XX - Redirection
 4XX - Client error
-5xx - Server error
+5XX - Server error
     
 When you don't provide a status code, express sends a status of 200 by default which means that the request was successful.
 Suppose we want to provide a different status code, we can do something like: 
