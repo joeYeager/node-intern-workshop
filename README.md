@@ -5,16 +5,17 @@
 The purpose of this workshop is to teach those who are new to Node.js how to get up and running with their
 very own Node.js application.  You will learn now to initialize a Node project, how to utilize npm(Node package manager) 
 to add dependencies to your project, and how to build your very first API.  By the end of this workshop you will have an 
-API that you can access from a web browser to provide a friendly greeting.  You will also hopefully have a better 
+API that you can access from a web browser or http client to provide a friendly birthday wish.  You will also hopefully have a better 
 understanding of APIs and how they work on a more general level.
  
 ## Notes
 - This project has numbered branches that you can checkout if you get lost along the way, the number will correspond to the
- step that it is next to the title in this README, so if have problems with step 1, you could do:  ``git checkout 1`` 
+ step that it is next to the title in this README, so if have problems with step 1, you could do: ``git stash`` and then ``git checkout 1`` 
  
 - In between steps, when you need to kill the process, you can do so using `Ctrl + C` 
  
-- For Windows users, install Node/NPM may not put the commands in your path, so you may need to run them like so: `c:\Program Files\nodejs\npm.cmd <command to run>`
+- For Windows users, installing Node/NPM may not put the commands in your path, so you may need to run them like so: `c:\Program Files\nodejs\npm.cmd <command to run>`
+
 ## Install Node.js and NPM
 
 To initialize the project you first need to have Node.js and NPM installed on your system, you can get node here: 
@@ -39,7 +40,7 @@ Now lets install our first dependency and see what happens.  As we said in the p
 used to track dependencies.  So lets go ahead and install Express a dependency that we will need to create our first API.
 To install a dependency, you simply run ``npm install <dependency>``, so in our case we want to run ``npm install express``
 
-So by installing a dependency, it should now be in your ``package.json`` file, right?  Nope, this is a 'gotcha' moment
+So by installing a dependency, it should now be in your ``package.json`` file, right?  Nope, this is a standard 'gotcha' moment
 with npm. You are now in the classic "works on my machine" situation. Go ahead and look at the `package.json` file again, 
 it should look exactly the same as before.  This command can be useful when you want to evaluate a package before adding it
 to your project, but we want it to work on everyone's machine, so that's no good.
@@ -59,10 +60,10 @@ looks something like:
 ## My first index.js (Step 3)
 
 In whatever method you feel comfortable, create a file in the same folder as the `package.json` file called index.js.  
-You can technically call it whatever you want, but in this workshop, we will be using index.js in the commands.
+You can technically call it whatever you want, but in this workshop, we will be using `index.js` in the commands.
 
 Now that you have a file created, you can now add code to it.  Lets add JavaScript's equivalent of a print statement, a 
-`console.log()` statement.  You can make it say whatever you want, just add `console.log("whatever you want to say");`
+`console.log()` statement.  You can make it say whatever you want, just add `console.log('whatever you want to say');`
 
 After you have added that you can run the script using `node index.js`, and you should see some output in your terminal.
 
@@ -251,8 +252,8 @@ that we can begin to configure now.
 
 We can call and store the function like so: `var app = express();`
 
-All that is left to do is configure it.  There is really only one piece of configuration that we need to do, and that is
-to tell it to listen for Http requests on a particular port.  In this example, we will us port 8000.
+All that is left to do is configure it.  There is really only one piece of configuration that we need to do now, and that is
+to tell it to listen for HTTP requests on a particular port.  In this example, we will us port 8000.
 
     app.listen(8000, function() {
         console.log("Listening on port 8000!");
@@ -272,9 +273,9 @@ we will change that in the next couple steps.
 
 Before we go on to continue setting up our API, it is important to stop and talk about different kinds of HTTP requests
 called HTTP Methods.  All of you use all of these on a daily basis whether you realize it our not.  We are not going to cover
-all of them, but just the 3 of the most commonly used.
+all of them, but just the 2 of the most commonly used.
  
-GET - this is probably one of the most commonly use HTTP methods there is. Every time you navigate to a webpage, you are 
+GET - this is probably one of the most commonly use HTTP methods there is. Every time you navigate to a web page, you are 
 making at least one GET request to a web server asking for the resources you need to view that page.  Any information that
 you need to transfer as part of a GET request is either done as part of the URL or as a request header(we will not get into these today).
 
@@ -293,8 +294,8 @@ statement we can add the following:
         response.send('Hello, world!');  
     });
     
-This looks pretty similar to the listen statement, so we should feel comfortable with this.  What we are going is telling 
-the application that we want to create a GET endpoint on '/' or the root level.  The second argument, the callback function, 
+This looks pretty similar to the listen statement, so we should feel comfortable with this.  What we are doing is telling 
+the application that we want to create a GET endpoint on '/', or the root level.  The second argument, the callback function, 
 can be considered a handler for every HTTP request we send to that endpoint. So every time a GET request is sent to 
 `localhost:8000`, that function will be invoked.  You will notice that this time the callback has arguments, that is because
 every time we hit that endpoint, express is passing the incoming request object in, as well as the response object that we will 
@@ -303,8 +304,8 @@ response.  Now we can try it out, by running the script again and navigating to 
 
 ## GET with route parameter (Step 7)
 
-As we talked about earlier, if there is ever any information that we need to send as part of a get request, we send it as 
-a part of the URL.  In this section, we will use that to wish one of the helpers today a happy birthday.  So we will do something
+As we talked about earlier, if there is ever any information that we need to send as part of a GET request, we send it as 
+a part of the URL.  In this section, we will use this to wish some of the helpers today a happy birthday.  So we will do something
 very similar to the previous section:
         
     app.get('/happy-birthday', function(request, response) {
@@ -337,8 +338,7 @@ Then we can add a couple statement below our instantiation of the `app` variable
     app.use(bodyParser.json());
     
 What these lines do is `require` the body-parser package and set up what is called middleware.  This particular piece of 
-middleware will run before every request is passed to it's corresponding handler function.  The body-parser will translate the
-request body into a format that express can understand.  Once we have those lines added, we can add a POST endpoint that
+middleware will run before every request.  The body-parser will translate the request body into a format that express can understand.  Once we have those lines added, we can add a POST endpoint that
 should look very familiar:
     
     app.post('/addTwoNumbers', function(request, response) {
@@ -346,7 +346,7 @@ should look very familiar:
         response.send("a + b = " + c);  
     });
 
-This endpoint is expected a body with exactly at least one parameter called `name`.
+This endpoint is expecting a body with two parameters called `a` and `b`.
 
 So now we can fire up Postman, and set it to use a POST request, and point it towards `localhost:8000/addTwoNumbers`.
 When we set up the middleware, we told it that we wanted our body parser to parse the body as JSON, so we can set the body type
@@ -365,14 +365,15 @@ We should get a response with our numbers being added together.
 ## Status Codes (Step 9)
 
 Every time an endpoint is accessed, it sends a status code.  Probably a couple of the better known examples of these are 
-404 not found  or 500 internal server error. 
+404 not found or 500 internal server error. 
 
 The status codes conform to the convention:
-1XX - Informational responses 
-2XX - Success
-3XX - Redirection
-4XX - Client error
-5XX - Server error
+
+- 1XX - Informational responses 
+- 2XX - Success
+- 3XX - Redirection
+- 4XX - Client error
+- 5XX - Server error
     
 When you don't provide a status code, express sends a status of 200 by default which means that the request was successful.
 Suppose we want to provide a different status code, we can do something like: 
