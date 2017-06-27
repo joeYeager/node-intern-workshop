@@ -36,8 +36,8 @@ After that you take a look at your `package.json` file to see what it is all abo
 
 ## Works on my machine (Step 2)
 
-Now lets install our first dependency and see what happens.  As we said in the previous step the ``package.json`` file is
-used to track dependencies.  So lets go ahead and install Express a dependency that we will need to create our first API.
+Now let's install our first dependency and see what happens.  As we said in the previous step the ``package.json`` file is
+used to track dependencies.  So let's go ahead and install Express a dependency that we will need to create our first API.
 To install a dependency, you simply run ``npm install <dependency>``, so in our case we want to run ``npm install express``
 
 So by installing a dependency, it should now be in your ``package.json`` file, right?  Nope, this is a standard 'gotcha' moment
@@ -62,7 +62,7 @@ looks something like:
 In whatever method you feel comfortable, create a file in the same folder as the `package.json` file called index.js.  
 You can technically call it whatever you want, but in this workshop, we will be using `index.js` in the commands.
 
-Now that you have a file created, you can now add code to it.  Lets add JavaScript's equivalent of a print statement, a 
+Now that you have a file created, you can now add code to it.  Let's add JavaScript's equivalent of a print statement, a 
 `console.log()` statement.  You can make it say whatever you want, just add `console.log('whatever you want to say');`
 
 After you have added that you can run the script using `node index.js`, and you should see some output in your terminal.
@@ -79,11 +79,11 @@ You can do something like: `var express = require('express');`
 
 This will allow you to later access the dependency using the keyword `express`.
 
-Lets test it by adding a `console.log()` statement like we learned about above to log out the contents of express.
+Let's test it by adding a `console.log()` statement like we learned about above to log out the contents of express.
  
 Something like: `console.log(express);` at the end of the file.
 
-Now lets run the index script using: `node index.js`, and we should see something along the lines of:
+Now let's run the index script using: `node index.js`, and we should see something along the lines of:
 
     
     { [Function: createApplication]
@@ -138,18 +138,18 @@ to tell it to listen for HTTP requests on a particular port.  In this example, w
 
 What this is doing is calling the listen function that is a part of the app object, and then passing it the port number 
 8000 to listen on.  The second argument being passed in to the listen function, is what is called a 'callback' function. 
-This is a  function that he listen function will invoke when it is done executing. 
+This is a function that the `listen` function will invoke when it is done executing. 
 
 If we run the script again, like previously (`node index.js`), we should see that this time, the script does not exit and 
 we see that the content in our `console.log` was logged to the console, so we know the listen function executed.  
-There is now an express server listening for requests on port 8000.  So now lets try accessing the server from a web browser.
+There is now an express server listening for requests on port 8000.  So now let's try accessing the server from a web browser.
 Open your browser of choice and navigate to `localhost:8000`.  You should see an error along the lines of 'Cannot GET /', 
 we will change that in the next couple steps.
 
 ## HTTP Methods
 
 Before we go on to continue setting up our API, it is important to stop and talk about different kinds of HTTP requests
-called HTTP Methods.  All of you use all of these on a daily basis whether you realize it our not.  We are not going to cover
+called HTTP Methods.  All of you use all of these on a daily basis whether you realize it or not.  We are not going to cover
 all of them, but just the 2 of the most commonly used.
  
 GET - this is probably one of the most commonly use HTTP methods there is. Every time you navigate to a web page, you are 
@@ -164,7 +164,7 @@ You can create an 'endpoint' for either of these methods in Express.
 ## GET (Step 6)
 
 To add a GET method on the app, we need to modify our `index.js` file, and tell our application that we want to create 
-an endpoint of type get.  We need to do this before we tell the application to start listening.  So above the listen 
+an endpoint of type GET.  We need to do this before we tell the application to start listening.  So above the listen 
 statement we can add the following:
     
     app.get('/', function(request, response) {
@@ -173,7 +173,7 @@ statement we can add the following:
     
 This looks pretty similar to the listen statement, so we should feel comfortable with this.  What we are doing is telling 
 the application that we want to create a GET endpoint on '/', or the root level.  The second argument, the callback function, 
-can be considered a handler for every HTTP request we send to that endpoint. So every time a GET request is sent to 
+can be considered a handler for every HTTP request we send to that endpoint. Every time a GET request is sent to 
 `localhost:8000`, that function will be invoked.  You will notice that this time the callback has arguments, that is because
 every time we hit that endpoint, express is passing the incoming request object in, as well as the response object that we will 
 use to respond to the request.  When we call `response.send('Hello, world!');` we are sending the text 'Hello, world!' as a 
@@ -189,7 +189,7 @@ very similar to the previous section:
         response.send('Happy Birthday Ricky!');  
     });
 
-This is nothing new, and it only works to wish Ricky a happy birthday, so lets jazz it up.   
+This is nothing new, and it only works to wish Ricky a happy birthday, so let's jazz it up.   
 
     app.get('/happy-birthday/:name', function(request, response) {
         response.send('Happy Birthday ' + request.params.name + '!');  
@@ -200,7 +200,7 @@ after `/happy-birthday/` as the variable name.  We can then access that name by 
 object.  
 
 Now we can navigate to `localhost:8000/happy-birthday/Justin` and wish Justin happy birthday.
-Also, lets not forget to navigate to `localhost:8000/happy-birthday/Evan` and wish Evan happy birthday as well.
+Also, let's not forget to navigate to `localhost:8000/happy-birthday/Evan` and wish Evan happy birthday as well.
 
 ## POST (Step 8)
 
